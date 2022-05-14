@@ -1,3 +1,5 @@
+[Test Link](ctrl_c.md)
+
 `fs/binfmt_elf.c` 里，`load_elf_binary()` 用一个大 loop 找类型是 `PT_INTERP` 的 program header，如果找到了，就说明需要 interpreter。
 
 截取 `readelf -l` 的输出：
