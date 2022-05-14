@@ -14,7 +14,7 @@ Enjoy!
 
 Thanks,\
 Peilin Ye (1):\
-&nbsp;&nbsp;&nbsp;&nbsp;linux: [Understanding Control-C](ctrl-c.md)
+&nbsp;&nbsp;&nbsp;&nbsp;linux: [Understanding Control-C](ctrl_c.md)
 
 --\
 2022.05.14
