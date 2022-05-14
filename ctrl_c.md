@@ -4,7 +4,7 @@
 > **Linux:** 5.18-rc5, commit 9c095bd0d4c4 ("Merge branch 'hns3-next'")\
 > **QEMU:** 7.0.50, commit 2d20a57453f6 ("Merge tag 'pull-fixes-for-7.1-200422-1' of ht<span>tps://github.com/stsquad/qemu into staging")
 
-```console
+```shell
 ypl@home:~$ sudo make isntall
 make: *** No rule to make target 'isntall'.  Stop.
 ypl@home:~$ sudo make isntal^C
@@ -35,7 +35,7 @@ index f9174ab8a014..93b4b637122a 100644
      }
 ```
 
-```console
+```shell
 ypl@home:~/bash$ ^C
 ypl@home:~/bash$ ./bash
 ypl@home:~/bash$ %C
