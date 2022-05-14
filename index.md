@@ -1,6 +1,6 @@
 # Peilin Ye's blog
 
-*** BLURB HERE ***
+**\*\*\* BLURB HERE \*\*\***
 
 Hi all,
 
@@ -14,4 +14,4 @@ Enjoy!
 
 Thanks,\
 Peilin Ye (1):\
-- linux: [Understanding Control-C](ctrl_c.md)
+&nbsp;&nbsp;&nbsp;&nbsp;linux: [Understanding Control-C](ctrl_c.md)
