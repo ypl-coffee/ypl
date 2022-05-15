@@ -1,8 +1,8 @@
 # Understanding Control-C
 
-> **Bash:** 5.1, commit 9439ce094c9a ("Bash-5.1 patch 16: fix interpretation of multiple instances of ! in \[\[ conditional commands")\
-> **Linux:** 5.18-rc5, commit 9c095bd0d4c4 ("Merge branch 'hns3-next'")\
-> **QEMU:** 7.0.50, commit 2d20a57453f6 ("Merge tag 'pull-fixes-for-7.1-200422-1' of ht<span>tps://github.com/stsquad/qemu into staging")
+> **Bash:** 5.1, commit [9439ce094c9a](https://git.savannah.gnu.org/cgit/bash.git/commit/?id=9439ce094c9aa7557a9d53ac7b412a23aa66e36b) ("Bash-5.1 patch 16: fix interpretation of multiple instances of ! in \[\[ conditional commands")\
+> **Linux:** 5.18-rc5, commit [9c095bd0d4c4](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=9c095bd0d4c451d31d0fd1131cc09d3b60de815d) ("Merge branch 'hns3-next'")\
+> **QEMU:** 7.0.50, commit [2d20a57453f6](https://repo.or.cz/qemu/armbru.git/commit/2d20a57453f6a206938cbbf77bed0b378c806c1f) ("Merge tag 'pull-fixes-for-7.1-200422-1' of ht<span>tps://github.com/stsquad/qemu into staging")
 
 ```terminal
 ypl@home:~$ sudo make isntall
