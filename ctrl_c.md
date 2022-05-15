@@ -44,7 +44,7 @@ ypl@home:~/bash$ %C
 ypl@home:~/bash$ 
 ```
 
-Yay! You just customized your `^C` (a.k.a. "special control characters").
+Yay! You just customized your `^C`.
 
 ## WIP
 
