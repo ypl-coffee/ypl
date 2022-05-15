@@ -4,6 +4,8 @@
 > **Linux:** 5.18-rc5, commit [9c095bd0d4c4](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=9c095bd0d4c451d31d0fd1131cc09d3b60de815d) ("Merge branch 'hns3-next'")\
 > **QEMU:** 7.0.50, commit [2d20a57453f6](https://repo.or.cz/qemu/armbru.git/commit/2d20a57453f6a206938cbbf77bed0b378c806c1f) ("Merge tag 'pull-fixes-for-7.1-200422-1' of ht<span>tps://github.com/stsquad/qemu into staging")
 
+---
+
 ```terminal
 ypl@home:~$ sudo make isntall
 make: *** No rule to make target 'isntall'.  Stop.
