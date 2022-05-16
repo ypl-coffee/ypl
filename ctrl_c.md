@@ -46,9 +46,9 @@ Yay! You just customized your `^C`!
 
 ## 1. Linux 8250 UART Serial Driver
 
-I'm using `qemu-system-x86_64 -nographic` because it's easier. It seems that, whenever I press `<Ctrl-C>`, QEMU sends an IRQ to my guest's [8250 UART](https://en.wikipedia.org/wiki/8250_UART), so let's start there!
+I'm using `qemu-system-x86_64` (`-nographic`) because it's easier. It seems that, whenever I press `<Ctrl-C>`, QEMU sends an IRQ to my guest's [8250 UART](https://en.wikipedia.org/wiki/8250_UART), so let's start there!
 
-> Feeling adventurous? Start from `source/arch/x86/kernel/irq.c:common_interrupt()`, or even QEMU instead!
+> Feeling adventurous? Start from `common_interrupt()` (see `source/arch/x86/kernel/irq.c`), or even QEMU instead!
 
 ```c
 drivers/tty/serial/8250/8250_core.c:serial8250_interrupt()   /* port->handle_irq(port) */
