@@ -125,8 +125,10 @@ drivers/tty/n_tty.c:n_tty_receive_buf2()
 
 In `n_tty_receive_buf_standard()`, N_TTY realizes that `<Ctrl-C>` is a [control character](https://en.wikipedia.org/wiki/Control_character) (ASCII 3, the [End-of-Text character](https://en.wikipedia.org/wiki/End-of-Text_character)) and handles it specially. Look for `ldata->char_map`.
 
-Finally, `__isig()` sends a `SIGINT` to [the process group (pgrp) controlling the tty](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/tty/tty_jobctrl.c?id=9c095bd0d4c451d31d0fd1131cc09d3b60de815d#n413).
+Finally, `__isig()` sends a `SIGINT` to [the process group controlling the tty](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/tty/tty_jobctrl.c?id=9c095bd0d4c451d31d0fd1131cc09d3b60de815d#n413), as specified in [POSIX 1003.1 Section 7.1.1.9, Special Characters](https://www.govinfo.gov/content/pkg/GOVPUB-C13-bf1fc57a5dbcaa993cebad99aca83f64/pdf/GOVPUB-C13-bf1fc57a5dbcaa993cebad99aca83f64.pdf#page=155):
 
+> It generates a SIGINT signal that is sent to all processes in the foreground process group for which the terminal is the controlling terminal.
+	
 ## Signal Handling
 
 Briefly,
@@ -154,10 +156,10 @@ arch/x86/entry/common.c:syscall_exit_to_user_mode()
                                      :do_exit()
                     kernel/sched/core.c:do_task_dead()
 ```
+	
+`get_signal()` calls `do_group_exit()` to terminate `yes`, since that's the default action for `SIGINT`. See [POSIX 1003.1 Table 3-1, Required Signals](https://www.govinfo.gov/content/pkg/GOVPUB-C13-bf1fc57a5dbcaa993cebad99aca83f64/pdf/GOVPUB-C13-bf1fc57a5dbcaa993cebad99aca83f64.pdf#page=74).
 
-`get_signal()` calls `do_group_exit()` to terminate `yes`, since that's the default action for `SIGINT`, as [specified in the POSIX 1003.1 standard](https://www.govinfo.gov/content/pkg/GOVPUB-C13-bf1fc57a5dbcaa993cebad99aca83f64/pdf/GOVPUB-C13-bf1fc57a5dbcaa993cebad99aca83f64.pdf#page=74).
-
-However, if user registered a handler for `SIGINT`, `get_signal()` will return, so back in `arch_do_signal_or_restart()`:
+On the other hand, if the process registered a handler for `SIGINT`, `get_signal()` returns to `arch_do_signal_or_restart()`:
 
 ```c
 void arch_do_signal_or_restart(struct pt_regs *regs, bool has_signal)
@@ -172,10 +174,10 @@ void arch_do_signal_or_restart(struct pt_regs *regs, bool has_signal)
 ...
 ```
 
-`handle_signal()` will "actually deliver the signal." This is true for `bash`, for example.
+`handle_signal()` will "actually deliver the signal" to user space. This is true for `bash`, for example.
 
 That's it! "Whee!"
 
 ## Appendix A: Signal Handling in [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html)
 
-Time to sleep...
+WIP, time to sleep...
