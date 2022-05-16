@@ -88,10 +88,10 @@ Here,
 Next, we traverse a few TTY core functions before getting to the line discipline:
 
 ```c
-drivers/tty/tty_buffers.c:tty_flip_buffer_push()   /* queue_work() */
+drivers/tty/tty_buffers.c:tty_flip_buffer_push()   	/* queue_work() */
 ...
                          :flush_to_ldisc()
-                           :receive_buf() /* port->client_ops->receive_buf() */
+                           :receive_buf() 		/* port->client_ops->receive_buf() */
                    tty_port.c:tty_port_default_receive_buf()
                    tty_buffer.c:tty_ldisc_receive_buf() /* ld->ops->receive_buf2() */
 ```
