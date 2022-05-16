@@ -14,7 +14,7 @@ ypl@home:~$ aargh
 -bash: aargh: command not found
 ```
 
-This post briefly describes what happens in Linux when you press `<Ctrl-C>` in an interactive `bash` shell.
+This post briefly describes what happens in Linux when you press `<Ctrl-C>`.
 
 ## Customizing Your `^C`
 
@@ -180,4 +180,11 @@ That's it! "Whee!"
 
 ## Appendix A: Signal Handling in [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html)
 
-WIP, time to sleep...
+Interestingly, when I press `<Ctrl-C>` in `bash`, `bash` actually receives `SIGINT` **twice**. See my `printk()` output:
+
+```
+[   17.337664] [bash, 0xffff96428638ba00] arch_do_signal_or_restart(): Whee! delivering SIGINT.
+[   17.348565] [bash, 0xffff96428638ba00] arch_do_signal_or_restart(): Whee! delivering SIGINT.
+```
+
+`bash` uses GNU Readline to read my input. When I press `<Ctrl-C>`, the first `SIGINT` is delivered to GNU Readline's own `SIGINT` handler, which [performs some special processing](https://docs.rtems.org/releases/4.5.1-pre3/toolsdoc/gdb-5.0-docs/readline/readline00030.html), reinstalls `bash`'s `SIGINT` handler, then sends a second `SIGINT` to `bash` itself (the same process).
