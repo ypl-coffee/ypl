@@ -16,7 +16,7 @@ ypl@home:~$ aargh
 
 This post briefly describes what happens in Linux when you press `<Ctrl-C>`.
 
-## Customizing Your `^C`
+## Customizing Your ^C
 
 ...but why not have some fun first? Ever wondered where does that `^C` string come from? Tired of it? Apply this to your `bash`:
 
