@@ -1,4 +1,7 @@
-# Understanding Control-C
+---
+layout: post
+title: "Understanding Control-C"
+---
 
 > **arch:** x86_64\
 > **Bash:** 5.1, commit [9439ce094c9a](https://git.savannah.gnu.org/cgit/bash.git/commit/?id=9439ce094c9aa7557a9d53ac7b412a23aa66e36b) ("Bash-5.1 patch 16: fix interpretation of multiple instances of ! in \[\[ conditional commands")\
