@@ -187,4 +187,4 @@ Interestingly, when I press `<Ctrl-C>` in `bash`, `bash` actually receives `SIGI
 [   17.348565] [bash, 0xffff96428638ba00] arch_do_signal_or_restart(): Whee! delivering SIGINT.
 ```
 
-`bash` uses GNU Readline to read my input. When I press `<Ctrl-C>`, the first `SIGINT` is delivered to GNU Readline's own `SIGINT` handler, which [performs some special processing](https://docs.rtems.org/releases/4.5.1-pre3/toolsdoc/gdb-5.0-docs/readline/readline00030.html), reinstalls `bash`'s `SIGINT` handler, then sends a second `SIGINT` to `bash` itself (the same process).
+`bash` uses GNU Readline to read input from user. When I press `<Ctrl-C>`, the first `SIGINT` is delivered to GNU Readline's own `SIGINT` handler, which [performs some special processing](https://docs.rtems.org/releases/4.5.1-pre3/toolsdoc/gdb-5.0-docs/readline/readline00030.html), reinstalls `bash`'s `SIGINT` handler, then sends a second `SIGINT` to `bash` itself (the same process).
