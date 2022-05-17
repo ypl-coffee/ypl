@@ -62,7 +62,7 @@ drivers/tty/serial/8250/8250_core.c:serial8250_interrupt()   /* port->handle_irq
 
 Let's take a closer look at `serial8250_rx_chars()`:
    
-```
+```c
 unsigned char serial8250_rx_chars(struct uart_8250_port *up, unsigned char lsr)
 {
 	struct uart_port *port = &up->port;
@@ -100,7 +100,7 @@ drivers/tty/tty_buffers.c:tty_flip_buffer_push()   	/* queue_work() */
 
 We will be dealing with [N_TTY](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/tty/n_tty.rst?id=9c095bd0d4c451d31d0fd1131cc09d3b60de815d#n4), the default line discipline. See `tty_ldisc_init()`:
 
-```
+```c
 int tty_ldisc_init(struct tty_struct *tty)
 {
 	struct tty_ldisc *ld = tty_ldisc_get(tty, N_TTY);  /* default to N_TTY */
@@ -163,7 +163,7 @@ arch/x86/entry/common.c:syscall_exit_to_user_mode()
 
 On the other hand, if the process registered a handler for `SIGINT`, `get_signal()` returns to `arch_do_signal_or_restart()`:
 
-```
+```c
 void arch_do_signal_or_restart(struct pt_regs *regs, bool has_signal)
 {
 	struct ksignal ksig;
