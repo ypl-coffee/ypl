@@ -53,7 +53,7 @@ I'm using `qemu-system-x86_64` (`-nographic`) because it's easier. It seems that
 
 > Feeling adventurous? Start from `common_interrupt()`, or even QEMU instead!
 
-```c
+```
 drivers/tty/serial/8250/8250_core.c:serial8250_interrupt()   /* port->handle_irq() */
                           8250_port.c:serial8250_default_handle_irq()
                                        :serial8250_handle_irq()
@@ -62,7 +62,7 @@ drivers/tty/serial/8250/8250_core.c:serial8250_interrupt()   /* port->handle_irq
 
 Let's take a closer look at `serial8250_rx_chars()`:
    
-```c
+```
 unsigned char serial8250_rx_chars(struct uart_8250_port *up, unsigned char lsr)
 {
 	struct uart_port *port = &up->port;
@@ -89,7 +89,7 @@ Here,
 
 Next, we traverse a few TTY core functions before getting to the line discipline:
 
-```c
+```
 drivers/tty/tty_buffers.c:tty_flip_buffer_push()   	/* queue_work() */
 ...
                          :flush_to_ldisc()
@@ -100,7 +100,7 @@ drivers/tty/tty_buffers.c:tty_flip_buffer_push()   	/* queue_work() */
 
 We will be dealing with [N_TTY](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/tty/n_tty.rst?id=9c095bd0d4c451d31d0fd1131cc09d3b60de815d#n4), the default line discipline. See `tty_ldisc_init()`:
 
-```c
+```
 int tty_ldisc_init(struct tty_struct *tty)
 {
 	struct tty_ldisc *ld = tty_ldisc_get(tty, N_TTY);  /* default to N_TTY */
@@ -114,7 +114,7 @@ int tty_ldisc_init(struct tty_struct *tty)
 
 ## N_TTY
 
-```c
+```
 drivers/tty/n_tty.c:n_tty_receive_buf2()
                      :n_tty_receive_buf_common()
                        :__receive_buf()
@@ -135,7 +135,7 @@ Finally, `__isig()` sends a `SIGINT` to [the process group controlling the tty](
 
 Briefly,
 
-```c
+```
 kernel/signal.c:kill_pgrp()
                  :__kill_pgrp_info()
                    :group_send_sig_info()
@@ -147,7 +147,7 @@ kernel/signal.c:kill_pgrp()
 
 Let's say I pressed `<Ctrl-C>` to stop `yes`. `__send_signal()` adds a pending `SIGINT` for `yes`, to be handled by the kernel later. For example, when `yes` returns from `write(2)`:
    
-```c
+```
 arch/x86/entry/common.c:syscall_exit_to_user_mode()
     kernel/entry/common.c:__syscall_exit_to_user_mode_work()
                            :exit_to_user_mode_prepare()
@@ -163,7 +163,7 @@ arch/x86/entry/common.c:syscall_exit_to_user_mode()
 
 On the other hand, if the process registered a handler for `SIGINT`, `get_signal()` returns to `arch_do_signal_or_restart()`:
 
-```c
+```
 void arch_do_signal_or_restart(struct pt_regs *regs, bool has_signal)
 {
 	struct ksignal ksig;
